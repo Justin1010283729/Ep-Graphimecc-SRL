@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contatti - Graphimecc PCTO</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="icon/iconasitogp.ico" type="image/x-icon" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(to right, #f0f0f0, #e6f2f5);
+      color: #333;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    .menu-verticale {
+      width: 180px;
+      background-color: #fc4a1a;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      animation: fadeSlideLeft 0.8s ease forwards;
+    }
+
+    .menu-verticale a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 1em;
+      border-left: 5px solid transparent;
+      position: relative;
+      transition: color 0.3s;
+      overflow: hidden;
+    }
+
+    /* Animazione underline on hover */
+    .menu-verticale a::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-verticale a:hover {
+      color: #333;
+      border-left-color: white;
+    }
+
+    .menu-verticale a:hover::after {
+      transform: scaleX(1);
+    }
+
+    header {
+      margin-left: 180px;
+      padding: 10px 20px 20px;
+      text-align: center;
+      background: linear-gradient(90deg, #f7b733, #fc4a1a);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      color: white;
+      user-select: none;
+      opacity: 0;
+      transform: translateY(-30px);
+      animation: fadeSlideDown 1s forwards;
+      animation-delay: 0.5s;
+    }
+
+    header h1 {
+      margin: 0 0 10px 0;
+      font-size: 2.2em;
+      font-weight: bold;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 0 5px rgba(255,255,255,0.8);
+      transition: transform 0.6s ease-in-out;
+      animation: pulseScale 2s infinite alternate;
+    }
+
+    .logo:hover {
+      transform: scale(1.2);
+      animation-play-state: paused;
+    }
+
+    main {
+      margin-left: 180px;
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 140px);
+      padding: 20px;
+      opacity: 0;
+      animation: fadeZoomIn 1s forwards;
+      animation-delay: 1.2s;
+    }
+
+    .container {
+      max-width: 900px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      padding: 30px 40px;
+      text-align: left;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    h2 {
+      color: #1a73e8;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin: 20px 0;
+      font-size: 1.1em;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s forwards;
+    }
+
+    .contact-item:nth-child(1) {
+      animation-delay: 1.4s;
+    }
+
+    .contact-item:nth-child(2) {
+      animation-delay: 1.6s;
+    }
+
+    .contact-item:nth-child(3) {
+      animation-delay: 1.8s;
+    }
+
+    .icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 15px;
+      display: inline-block;
+      font-size: 1.5em;
+    }
+
+    .contact-label {
+      font-weight: bold;
+      color: #fc4a1a;
+      min-width: 160px;
+    }
+
+    .contact-info {
+      color: #333;
+    }
+
+    footer {
+      margin-left: 180px;
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #777;
+      border-top: 1px solid #ccc;
+      background: #f0f0f0;
+      user-select: none;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeSlideUp 1s forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes pulseScale {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(255,255,255,0.8);
+      }
+      100% {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(255,255,255,1);
+      }
+    }
+
+    @keyframes fadeSlideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeZoomIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    @media (max-width: 800px) {
+      .menu-verticale {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        animation: none;
+      }
+
+      .menu-verticale a {
+        border-left: none;
+        border-bottom: 3px solid transparent;
+      }
+
+      .menu-verticale a:hover {
+        border-left: none;
+        border-bottom: 3px solid white;
+      }
+
+      header, main, footer {
+        margin-left: 0;
+        text-align: center;
+      }
+
+      main {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="menu-verticale" id="menu">
+    <a href="index.html">Home</a>
+    <a href="Argomenti trattati.html">Argomenti trattati</a>
+    <a href="Programmazione.html">Programmazione</a>
+    <a href="contatti.html">Contatti</a>
+  </nav>
+
+  <header>
+    <h1>Contatti</h1>
+    <div class="logo-container">
+      <a href="https://graphimecc.it/it/">
+        <img src="icon/gpf.jpg" alt="Logo Graphimecc" class="logo" />
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2>Come puoi contattarmi</h2>
+
+      <div class="contact-item">
+        <div class="icon">📧</div>
+        <div>
+          <div class="contact-label">Email personale:</div>
+          <div class="contact-info"><a href="mailto:justinplaku87@gmail.com">justinplaku87@gmail.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="icon">📱</div>
+        <div>
+          <div class="contact-label">Telefono personale:</div>
+          <div class="contact-info"><a href="tel:+393497622168">+39 349 762 2168</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="icon">☎️</div>
+        <div>
+          <div class="contact-label">Telefono aziendale:</div>
+          <div class="contact-info"><a href="tel:+390458780263">+39 045 87 80 263</a></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 - Graphimecc Srl | Esperienza PCTO di Justin Plaku
+  </footer>
+
+</body>
+</html>

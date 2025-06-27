@@ -1,0 +1,172 @@
+/* Importa font elegante da Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+
+p {
+	
+	color: black;
+	font-size: 20px;
+	
+}
+
+
+#ip3 {
+	
+  background-color: #faf5f5;
+  color: black;
+  padding: 20px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+	
+}
+
+
+.statistiche {
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f2f2f2;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.statistiche h2 {
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.stat-box {
+  margin: 20px auto;
+  padding: 20px;
+  background-color: orange;
+  border-radius: 25px;
+  max-width: 400px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.numero {
+  font-size: 2em;
+  color: #1a73e8;
+  font-weight: bold;
+}
+
+.etichetta {
+  font-size: 1em;
+  color: #555;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+#logo99 {
+		
+	text-align: left;
+	
+}
+
+
+
+.menu-verticale {
+  position: fixed;
+  top: 50%; /* verticalmente a metà pagina */
+  left: 0;
+  transform: translateY(-50%);
+  background-color: #333;
+  padding: 10px 0;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+}
+
+.menu-verticale a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  padding: 12px 20px;
+  transition: background 0.3s;
+}
+
+.menu-verticale a:hover {
+  background-color: #04c98b ;
+}
+
+
+
+
+#p2 {
+	
+	color: green;
+	font-size: 20px;
+	
+}
+
+
+
+body {
+  background-color: #ffffff;
+  color: #333333;
+  line-height: 1.6;
+}
+
+header {
+  background-color: orange;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 22px
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.logo {
+  height: 100px;
+  width: auto;
+  margin-top: 30px
+  
+  
+}
+
+
+header h1 {
+  color: black;
+}
+
+main {
+  padding: 40px 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+#datetime {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
+  color: white;
+  font-weight: 700;
+  padding: 15px 20px;
+}

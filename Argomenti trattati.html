@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>La mia Esperienza Tecnica</title>
+  <link rel="icon" type="image/x-icon" href="icon/iconasitogp.ico" />
+  <style>
+    .menu-verticale {
+      width: 180px;
+      background-color: #fc4a1a;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      animation: fadeSlideLeft 0.8s ease forwards;
+      z-index: 1000;
+    }
+
+    .menu-verticale a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      font-weight: 700;
+      font-size: 1em;
+      border-left: 5px solid transparent;
+      position: relative;
+      transition: color 0.3s;
+      overflow: hidden;
+    }
+
+    .menu-verticale a::after {
+      content: '';
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: #fff;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .menu-verticale a:hover {
+      color: #333;
+      border-left-color: white;
+    }
+
+    .menu-verticale a:hover::after {
+      transform: scaleX(1);
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #d5e5e8;
+      color: #333;
+      padding-left: 180px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background-color: #e6b54c;
+      color: white;
+      animation: fadeSlideDown 1s forwards;
+      animation-delay: 0.5s;
+      opacity: 0;
+      transform: translateY(-30px);
+      user-select: none;
+      padding: 20px 0;
+    }
+
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 900px;
+      margin: auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 0 5px rgba(255,255,255,0.8);
+      transition: transform 0.6s ease-in-out;
+      animation: pulseScale 2s infinite alternate;
+    }
+
+    .logo:hover {
+      transform: scale(1.2);
+      animation-play-state: paused;
+    }
+
+    h1 {
+      text-align: center;
+      flex-grow: 1;
+      margin: 0;
+      font-size: 2em;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 30px auto 60px;
+      padding: 30px 20px;
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      opacity: 0;
+      animation: fadeZoomIn 1s forwards;
+      animation-delay: 1.2s;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .tabella-container {
+      margin-top: 40px;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s forwards;
+    }
+
+    .tabella-container:nth-of-type(1) {
+      animation-delay: 1.5s;
+    }
+
+    .tabella-container:nth-of-type(2) {
+      animation-delay: 1.8s;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 16px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #1a73e8;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .linguaggi {
+      margin-top: 40px;
+      background-color: #e8f0fe;
+      padding: 20px;
+      border-left: 6px solid #1a73e8;
+      font-size: 1.1em;
+      opacity: 0;
+      animation: fadeSlideUp 0.7s forwards;
+      animation-delay: 2.1s;
+    }
+
+    .linguaggi ul {
+      margin: 10px 0 0 20px;
+      padding: 0;
+      list-style-type: disc;
+    }
+
+    @keyframes pulseScale {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 5px rgba(255,255,255,0.8);
+      }
+      100% {
+        transform: scale(1.1);
+        box-shadow: 0 0 15px rgba(255,255,255,1);
+      }
+    }
+
+    @keyframes fadeSlideDown {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeSlideLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes fadeZoomIn {
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+      from {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    @keyframes fadeSlideUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+    }
+
+    @media (max-width: 800px) {
+      body {
+        padding-left: 0;
+      }
+      .menu-verticale {
+        position: relative;
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-around;
+        animation: none;
+      }
+
+      .menu-verticale a {
+        border-left: none;
+        border-bottom: 3px solid transparent;
+      }
+
+      .menu-verticale a:hover {
+        border-left: none;
+        border-bottom: 3px solid white;
+      }
+
+      header, main {
+        padding: 20px;
+      }
+
+      .header-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      h1 {
+        font-size: 1.5em;
+      }
+
+      main {
+        margin: 20px auto;
+        box-shadow: none;
+        border-radius: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-verticale" id="menu">
+    <a href="index.html">Home</a>
+    <a href="Argomenti trattati.html">Argomenti trattati</a>
+    <a href="Programmazione.html">Programmazione</a>
+    <a href="contatti.html">Contatti</a>
+  </div>
+
+  <header>
+    <div class="header-content">
+      <a href="https://graphimecc.it/it/">
+        <img src="icon/gpf.jpg" alt="Logo Graphimecc" class="logo" />
+      </a>
+      <h1>Argomenti trattati</h1>
+      <div style="width: 100px;"></div>
+    </div>
+  </header>
+
+  <main>
+    <p>
+      Durante il mio tirocinio tecnico ho svolto attività sia pratiche che teoriche. Ho lavorato con macchinari per la stampa di etichette, ma anche sviluppato codice con diversi linguaggi. Ecco una panoramica delle ore dedicate.
+    </p>
+
+    <div class="tabella-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Attività</th>
+            <th>Descrizione</th>
+            <th>Ore dedicate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pratica con macchinari</td>
+            <td>Uso e gestione di macchine per etichette</td>
+            <td>90 ore</td>
+          </tr>
+          <tr>
+            <td>Teoria e programmazione</td>
+            <td>Studio e sviluppo software</td>
+            <td>70 ore</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tabella-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Modello Macchinario</th>
+            <th>Operazioni svolte</th>
+            <th>Esito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Stat 224</td><td>Controlli automatici</td><td>Positivi</td></tr>
+          <tr><td>Stat 220</td><td>Allineamento testine</td><td>Positivi</td></tr>
+          <tr><td>Stat 219</td><td>Manutenzione software</td><td>Riuscita</td></tr>
+          <tr><td>Stat 224</td><td>Simulazioni</td><td>Ok</td></tr>
+          <tr><td>Stat 224</td><td>Collegamento a PLC</td><td>Funzionante</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="linguaggi">
+      <strong>Linguaggi utilizzati:</strong>  
+      <ul>
+        <li><strong>C#</strong> – per sviluppo software aziendale</li>
+        <li><strong>JavaScript</strong> – per funzionalità web</li>
+        <li><strong>C++</strong> – introdotto per basi su sistemi embedded</li>
+      </ul>
+    </div>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Area Riservata Admin - Graphimecc</title>
+  <link rel="icon" type="image/x-icon" href="icon/iconasitogp.ico" />
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      height: 100vh;
+    }
+
+    nav {
+      width: 220px;
+      background-color: #004d40;
+      color: #b2dfdb;
+      display: flex;
+      flex-direction: column;
+      padding-top: 20px;
+      box-sizing: border-box;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+      padding: 0 20px 30px 20px;
+      border-bottom: 1px solid #00695c;
+      user-select: none;
+    }
+
+    nav .logo img {
+      height: 40px;
+      margin-right: 12px;
+    }
+
+    nav .logo span {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #a7ffeb;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    nav ul li {
+      padding: 15px 20px;
+      cursor: pointer;
+      border-left: 4px solid transparent;
+      transition: background-color 0.3s, border-left-color 0.3s;
+      user-select: none;
+    }
+
+    nav ul li:hover {
+      background-color: #00695c;
+      border-left-color: #a7ffeb;
+    }
+
+    nav ul li.active {
+      background-color: #00796b;
+      border-left-color: #a7ffeb;
+      font-weight: bold;
+    }
+
+    main {
+      flex-grow: 1;
+      padding: 30px;
+      overflow-y: auto;
+      background: white;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      user-select: none;
+      width: 100%;
+      justify-content: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #004d40;
+      font-weight: 700;
+    }
+
+    #admin-user-management {
+      max-width: 400px;
+      background: #e0f2f1;
+      padding: 25px 20px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,77,64,0.2);
+      margin-bottom: 40px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-top: 15px;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-top: 6px;
+      border: 2px solid #004d40;
+      border-radius: 10px;
+      font-size: 1rem;
+      outline-offset: 2px;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="password"]:focus,
+    select:focus {
+      border-color: #00796b;
+      background-color: #b2dfdb;
+    }
+
+    button[type="submit"] {
+      margin-top: 25px;
+      background-color: #004d40;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      font-weight: 700;
+      padding: 12px 0;
+      width: 100%;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      user-select: none;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #00796b;
+    }
+
+    #createUserMessage {
+      margin-top: 12px;
+      font-weight: 700;
+      text-align: center;
+      min-height: 22px;
+    }
+
+    #user-list-section {
+      max-width: 400px;
+      width: 100%;
+    }
+
+    #user-list ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      background: #e0f2f1;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0,77,64,0.15);
+      padding: 15px 20px;
+    }
+
+    #user-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #b2dfdb;
+      font-weight: 600;
+      color: #004d40;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    #user-list li:last-child {
+      border-bottom: none;
+    }
+
+    .password-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .password-container input {
+      border: none;
+      background: transparent;
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #004d40;
+      width: 130px;
+      user-select: text;
+    }
+
+    .password-container input:focus {
+      outline: none;
+      border-bottom: 2px solid #00796b;
+      background: #b2dfdb;
+      border-radius: 4px;
+      padding-left: 4px;
+    }
+
+    .toggle-password {
+      cursor: pointer;
+      user-select: none;
+      font-size: 1.2rem;
+      color: #00796b;
+      transition: color 0.3s;
+    }
+
+    .toggle-password:hover {
+      color: #004d40;
+    }
+
+    #logoutBtn {
+      margin: 40px auto 0 auto;
+      background-color: #c62828;
+      border: none;
+      color: white;
+      padding: 14px 40px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      border-radius: 15px;
+      cursor: pointer;
+      user-select: none;
+      transition: background-color 0.3s;
+    }
+
+    #logoutBtn:hover {
+      background-color: #8e0000;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">
+      <img src="icon/iconasitogp.ico" alt="Logo Graphimecc" />
+      <span>Graphimecc</span>
+    </div>
+    <ul>
+      <li class="active">Dashboard</li>
+      <li>Gestione Utenti</li>
+      <li>Impostazioni</li>
+      <li>Statistiche</li>
+      <li>Supporto</li>
+    </ul>
+  </nav>
+
+  <main>
+    <header>
+      <h1>Area Riservata Admin</h1>
+    </header>
+
+    <section id="admin-user-management">
+      <h3>Crea nuovo utente</h3>
+      <form id="createUserForm" novalidate>
+        <label for="newUsername">Username:</label>
+        <input type="text" id="newUsername" required minlength="3" autocomplete="off" />
+
+        <label for="newPassword">Password:</label>
+        <input type="password" id="newPassword" required autocomplete="off" />
+
+        <label for="newRole">Ruolo:</label>
+        <select id="newRole">
+          <option value="user" selected>Utente</option>
+          <option value="admin">Admin</option>
+        </select>
+
+        <button type="submit">Crea utente</button>
+        <div id="createUserMessage"></div>
+      </form>
+    </section>
+
+    <section id="user-list-section">
+      <h3>Lista utenti registrati</h3>
+      <div id="user-list"></div>
+    </section>
+
+    <button id="logoutBtn">Logout</button>
+  </main>
+
+  <script>
+    function loadUsers() {
+      const storedUsers = localStorage.getItem('users')
+      if (storedUsers) {
+        return JSON.parse(storedUsers)
+      } else {
+        const defaultUsers = {
+          utente: { password: "abcd", role: "user" },
+          "R.pedrollo": { password: "secret", role: "user" },
+          "J.Plaku": { password: "secret", role: "user" },
+          admin: { password: "1234", role: "admin" }
+        }
+        localStorage.setItem('users', JSON.stringify(defaultUsers))
+        return defaultUsers
+      }
+    }
+
+    function saveUsers(users) {
+      localStorage.setItem('users', JSON.stringify(users))
+    }
+
+    function displayUsers() {
+      const users = loadUsers()
+      const userList = document.getElementById('user-list')
+      if (!userList) return
+
+      let html = '<ul>'
+      for (const username in users) {
+        const user = users[username]
+        html += `<li>
+          <strong>${username}</strong> — Ruolo: ${user.role}
+          <div class="password-container">
+            <input type="password" readonly value="${user.password}" id="pwd-${username}" />
+            <span class="toggle-password" data-target="pwd-${username}" title="Mostra/Nascondi password">👁️</span>
+          </div>
+        </li>`
+      }
+      html += '</ul>'
+      userList.innerHTML = html
+
+      document.querySelectorAll('.toggle-password').forEach(btn => {
+        btn.onclick = () => {
+          const input = document.getElementById(btn.dataset.target)
+          if (!input) return
+          if (input.type === "password") {
+            input.type = "text"
+          } else {
+            input.type = "password"
+          }
+        }
+      })
+    }
+
+    document.getElementById('createUserForm').addEventListener('submit', e => {
+      e.preventDefault()
+      const username = document.getElementById('newUsername').value.trim()
+      const password = document.getElementById('newPassword').value
+      const role = document.getElementById('newRole').value
+
+      const msgEl = document.getElementById('createUserMessage')
+
+      if (username.length < 3) {
+        msgEl.style.color = 'red'
+        msgEl.textContent = "Username deve contenere almeno 3 caratteri"
+        return
+      }
+      if (password.length < 1) {
+        msgEl.style.color = 'red'
+        msgEl.textContent = "Password non può essere vuota"
+        return
+      }
+
+      const users = loadUsers()
+      if (users[username]) {
+        msgEl.style.color = 'red'
+        msgEl.textContent = "Utente già esistente"
+        return
+      }
+
+      users[username] = { password, role }
+      saveUsers(users)
+      displayUsers()
+
+      msgEl.style.color = 'green'
+      msgEl.textContent = `Utente "${username}" creato con successo!`
+
+      e.target.reset()
+    })
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      const currentUser = localStorage.getItem('username') || ''
+      if (currentUser) {
+        localStorage.setItem('lastLoggedOutUser', currentUser)
+      }
+      localStorage.removeItem('loggedIn')
+      localStorage.removeItem('role')
+      localStorage.removeItem('username')
+      window.location.href = 'login.html'
+    })
+
+    // Controllo accesso admin
+    function checkAdminAccess() {
+      if (localStorage.getItem('loggedIn') !== 'true' || localStorage.getItem('role') !== 'admin') {
+        alert('Accesso negato. Devi effettuare il login come admin.')
+        window.location.href = 'login.html'
+      }
+    }
+
+    checkAdminAccess()
+    displayUsers()
+  </script>
+</body>
+</html>

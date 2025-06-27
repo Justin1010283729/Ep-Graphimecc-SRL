@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La mia Esperienza Tecnica</title>
+  <link rel="stylesheet" href="stile.css">
+  <link rel="icon" type="image/x-icon" href="icon/iconasitogp.ico" />
+  <style>
+    .header-content {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #d5e5e8;
+      color: #333;
+    }
+
+    header {
+      background-color: #e6b54c;
+      color: white;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      flex-grow: 1;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .tabella-container {
+      margin-top: 40px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 16px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #1a73e8;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .linguaggi {
+      margin-top: 40px;
+      background-color: #e8f0fe;
+      padding: 20px;
+      border-left: 6px solid #1a73e8;
+      font-size: 1.1em;
+    }
+
+    @media (max-width: 600px) {
+      table, th, td {
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-verticale" id="menu">
+    <a href="index.html">Home</a>
+    <a href="Argomenti trattati.html">Argomenti trattati</a>
+    <a href="Programmazione.html">Programmazione</a>
+    <a href="contatti.html">Contatti</a>
+  </div>
+
+  <header>
+    <div class="header-content">
+      <a href="https://graphimecc.it/it/">
+        <img src="icon/gpf.jpg" alt="Logo Graphimecc" class="logo" />
+      </a>
+      <h1>Argomenti trattati</h1>
+      <div style="width: 100px;"></div> <!-- spazio finto per bilanciamento -->
+    </div>
+  </header>
+
+  <main>
+    <p>
+      Durante il mio tirocinio tecnico ho svolto attività sia pratiche che teoriche. Ho lavorato con macchinari per la stampa di etichette, ma anche sviluppato codice con diversi linguaggi. Ecco una panoramica delle ore dedicate.
+    </p>
+
+    <div class="tabella-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Attività</th>
+            <th>Descrizione</th>
+            <th>Ore dedicate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Pratica con macchinari</td>
+            <td>Uso e gestione di macchine per etichette</td>
+            <td>90 ore</td>
+          </tr>
+          <tr>
+            <td>Teoria e programmazione</td>
+            <td>Studio e sviluppo software</td>
+            <td>70 ore</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <br>
+
+    <div class="tabella-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Modello Macchinario</th>
+            <th>Operazioni svolte</th>
+            <th>Esito</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Stat 224</td><td>Controlli automatici</td><td>Positivi</td></tr>
+          <tr><td>Stat 220</td><td>Allineamento testine</td><td>Positivi</td></tr>
+          <tr><td>Stat 219</td><td>Manutenzione software</td><td>Riuscita</td></tr>
+          <tr><td>Stat 224</td><td>Simulazioni</td><td>Ok</td></tr>
+          <tr><td>Stat 224</td><td>Collegamento a PLC</td><td>Funzionante</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="linguaggi">
+      <strong>Linguaggi utilizzati:</strong>  
+      <ul>
+        <li><strong>C#</strong> – per sviluppo software aziendale</li>
+        <li><strong>JavaScript</strong> – per funzionalità web</li>
+        <li><strong>C++</strong> – introdotto per basi su sistemi embedded</li>
+      </ul>
+    </div>
+    <br>
+  </main>
+
+</body>
+</html>

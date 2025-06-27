@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Esperienza Tecnica</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/x-icon" href="icon/iconasitogp.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(to right, #f0f0f0, #e6f2f5);
+      color: #333;
+      display: flex;
+    }
+
+    .menu-verticale {
+      width: 200px;
+      background-color: #1a73e8;
+      min-height: 100vh;
+      padding-top: 30px;
+      position: fixed;
+      left: 0;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .menu-verticale a {
+      color: white;
+      text-decoration: none;
+      padding: 12px 0;
+      width: 100%;
+      text-align: center;
+      transition: background 0.3s;
+    }
+
+    .menu-verticale a:hover {
+      background-color: #0f59c9;
+    }
+
+    .menu-verticale a.logo-link img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 30px;
+    }
+
+    .contenuto {
+      margin-left: 200px;
+      width: calc(100% - 200px);
+    }
+
+    header {
+      background: linear-gradient(90deg, #f7b733, #fc4a1a);
+      padding: 30px;
+      color: white;
+      font-size: 2.3em;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .card h2 {
+      color: #1a73e8;
+      margin-bottom: 10px;
+      font-size: 1.4em;
+    }
+
+    .card p {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+
+    .codice-section {
+      background-color: #ffffff;
+      border-left: 6px solid #1a73e8;
+      padding: 30px;
+      margin-top: 50px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      line-height: 1.7;
+    }
+
+    .codice-section h2 {
+      color: #1a73e8;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+
+    .codice-section h3 {
+      color: #fc4a1a;
+      margin-top: 30px;
+    }
+
+    .codice-section code {
+      background-color: #f2f2f2;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.95em;
+    }
+
+    .codice-section ul, .codice-section ol {
+      margin-left: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 20px 10px 10px 0;
+      padding: 12px 20px;
+      background-color: #1a73e8;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-weight: bold;
+      text-decoration: none;
+      transition: background 0.3s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #0f59c9;
+    }
+
+    #json-output {
+      margin-top: 20px;
+      background-color: #f6f6f6;
+      padding: 15px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      font-family: monospace;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9em;
+      color: #666;
+      border-top: 1px solid #ccc;
+      margin-top: 60px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+
+      .menu-verticale {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: center;
+        padding: 10px 0;
+      }
+
+      .menu-verticale a.logo-link img {
+        display: none;
+      }
+
+      .menu-verticale a {
+        padding: 10px 15px;
+        font-size: 0.9em;
+      }
+
+      .contenuto {
+        margin-left: 0;
+        width: 100%;
+      }
+
+      header {
+        font-size: 1.5em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="menu-verticale">
+    <a href="https://graphimecc.it/it/" class="logo-link">
+      <img src="icon/gpf.jpg" alt="Logo Graphimecc">
+    </a>
+    <a href="index.html">Home</a>
+    <a href="Argomenti trattati.html">Argomenti</a>
+    <a href="Programmazione.html">Programmazione</a>
+    <a href="contatti.html">Contatti</a>
+  </div>
+
+  <div class="contenuto">
+    <header>La Mia Esperienza Tecnica</header>
+
+    <div class="container">
+      <div class="card-grid">
+        <div class="card">
+          <h2>Ore di lavoro</h2>
+          <p>Ho lavorato dalle <strong>8:00</strong> alle <strong>17:00</strong> dal <strong>18 giugno al 6 luglio</strong>, per un totale di <strong>160 ore</strong>.</p>
+        </div>
+        <div class="card">
+          <h2>Attività Pratiche</h2>
+          <p>Gestione di macchinari industriali per stampa di etichette, osservazione dei cicli produttivi e attività operative sul campo.</p>
+        </div>
+        <div class="card">
+          <h2>Linguaggi Sviluppati</h2>
+          <p>Durante il tirocinio ho toccato diversi linguaggi: <strong>C#</strong> per software interno, <strong>JavaScript</strong> per il sito, e introduzione a <strong>C++</strong>.</p>
+        </div>
+      </div>
+
+      <section class="codice-section">
+        <h2>Gestione Bobine con C# e Redis</h2>
+
+        <p>Durante la mia esperienza in azienda, ho avuto l'opportunità di collaborare su un progetto pratico per la simulazione e la gestione di bobine industriali. Il progetto si è basato sull'uso del linguaggio <strong>C#</strong> per la logica e di <strong>Redis</strong> come sistema di gestione dati.</p>
+
+        <h3>📦 Struttura della classe Bobina</h3>
+        <p>La classe <code>Bobina</code> incapsula le informazioni relative a una bobina, come ID e numero di pezzi. Gestisce lo stato della produzione attraverso un contatore e restituisce comandi specifici:</p>
+        <ul>
+          <li><code>R_{id}_START</code> all'inizio</li>
+          <li><code>R_{id}_{pezzo}</code> durante la produzione</li>
+          <li><code>R_{id}_END</code> al termine</li>
+        </ul>
+
+        <h3>🔄 Simulazione produzione</h3>
+        <p>Nel file <code>Program.cs</code> ho creato un elenco di bobine simulate, ognuna con un numero predefinito di pezzi. Per ogni bobina, il programma:</p>
+        <ol>
+          <li>Inserisce i dati su Redis</li>
+          <li>Genera una lista di valori di produzione</li>
+          <li>Salva i dati anche in formato JSON</li>
+        </ol>
+
+        <h3>📁 Download del file JSON</h3>
+        <a href="bobine.json" download class="btn">Scarica bobine.json</a>
+        <button class="btn" onclick="caricaJSON()">Mostra contenuto JSON</button>
+
+        <div id="json-output">Clicca su "Mostra contenuto JSON" per vedere i dati...</div>
+      </section>
+    </div>
+
+    <footer>
+      © 2025 - Esperienza Tecnica | Progetto personale
+    </footer>
+  </div>
+
+  <script>
+    function caricaJSON() {
+      fetch("bobine.json")
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Errore nel caricamento del file JSON.");
+          }
+          return response.json();
+        })
+        .then(data => {
+          document.getElementById("json-output").textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => {
+          document.getElementById("json-output").textContent = "Impossibile caricare il file JSON.";
+          console.error(error);
+        });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>La mia esperienza</title>
+  <link rel="stylesheet" href="stile.css" />
+  <script defer src="script.js"></script>
+  <link rel="icon" type="image/x-icon" href="icon/iconasitogp.ico" />
+  <style>
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+    }
+
+    .logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    #logoutBtn {
+      background-color: #d1430a;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      font-weight: bold;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+    }
+
+    #logoutBtn:hover {
+      background-color: #004d40;
+    }
+
+    #datetime {
+      color: black;
+      font-weight: bold;
+      min-width: 120px;
+      text-align: right;
+    }
+
+    /* Mappa */
+    #map {
+      width: 100%;
+      height: 400px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    section#mappa-graphimecc {
+      margin-top: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="menu-verticale" id="menu">
+    <a href="index.html">Home</a>
+    <a href="Argomenti trattati.html">Argomenti trattati</a>
+    <a href="Programmazione.html">Programmazione</a>
+    <a href="contatti.html">Contatti</a>
+  </div>
+
+  <header>
+    <div class="header-content">
+      <a href="https://graphimecc.it/it/">
+        <img src="icon/gpf.jpg" alt="Logo Graphimecc" class="logo" />
+      </a>
+      <div class="header-left">
+        <button id="logoutBtn" onclick="logout()">Logout</button>
+        <div id="datetime"></div>
+      </div>
+    </div>
+
+    <h1 style="text-align: center;">Graphimecc S.R.L.</h1>
+  </header>
+
+  <main>
+    <p id="p2">Questa pagina è dedicata alla mia esperienza nell'ambito lavorativo extrascolastico.</p>
+    <br /><br /><br /><br />
+    <p>
+      Durante il mio tirocinio presso Graphimecc Srl ho avuto l'opportunità di immergermi in un ambiente lavorativo dinamico, dove teoria e pratica si intrecciano costantemente. Ho potuto lavorare direttamente con i macchinari per la produzione di stampi per etichette, imparando a conoscere i processi industriali e le tecniche di precisione necessarie per ottenere prodotti di alta qualità. Parallelamente, ho approfondito le mie competenze di programmazione, specialmente in C#, affiancando lo sviluppo di software per il controllo e la gestione dei macchinari. Questa esperienza mi ha permesso di capire come applicare concetti teorici di informatica e automazione in contesti reali, bilanciando l’uso di vari linguaggi di programmazione e affrontando problemi pratici quotidiani. In sintesi, il tirocinio è stato un perfetto mix tra apprendimento tecnico e applicazione pratica, fondamentale per la mia crescita professionale.
+    </p>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <section class="statistiche">
+      <h2>Statistiche</h2>
+      <div class="stat-box">
+        <div class="numero">160</div>
+        <div class="etichetta">Ore totali</div>
+      </div>
+      <div class="stat-box">
+        <div class="numero">18 Giugno - 16 Luglio</div>
+        <div class="etichetta">Periodo</div>
+      </div>
+      <div class="stat-box">
+        <div class="numero">8:00 - 17:00</div>
+        <div class="etichetta">Orario di lavoro</div>
+      </div>
+    </section>
+
+    <section id="mappa-graphimecc">
+      <h2>Dove trovarci</h2>
+      <p>Graphimecc S.R.L. - Via esempio 123, Verona</p>
+      <div id="map"></div>
+    </section>
+  </main>
+
+  <script>
+    function initMap() {
+      const location = { lat: 45.42432, lng: 11	.07830 }
+
+      const map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: location
+      })
+
+      const marker = new google.maps.Marker({
+        position: location,
+        map: map,
+        title: 'Graphimecc S.R.L.',
+        icon: {
+          url: 'icon/gpf.jpg',
+          scaledSize: new google.maps.Size(50, 50)
+        },
+        animation: google.maps.Animation.BOUNCE
+      })
+
+      const infowindow = new google.maps.InfoWindow({
+        content: '<h3>Graphimecc S.R.L.</h3><p>Via Alfred Nobel 2 Verona</p>'
+      })
+
+      marker.addListener('click', () => {
+        infowindow.open(map, marker)
+      })
+    }
+  </script>
+
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyACOg_l_x6iznP-u2QcVTKuMkdZEdn9hGU&callback=initMap"
+    async
+    defer
+  ></script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Area Admin - Graphimecc</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    display: flex;
+    height: 100vh;
+  }
+  /* Sidebar */
+  .sidebar {
+    width: 260px;
+    background: #2c3e50;
+    color: #ecf0f1;
+    display: flex;
+    flex-direction: column;
+    padding: 30px 20px;
+  }
+  .sidebar h2 {
+    margin: 0 0 40px 0;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    font-size: 1.8rem;
+    text-align: center;
+    border-bottom: 2px solid #2980b9;
+    padding-bottom: 15px;
+  }
+  .sidebar nav a {
+    color: #bdc3c7;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border-radius: 8px;
+    display: block;
+    transition: background 0.3s, color 0.3s;
+  }
+  .sidebar nav a:hover, .sidebar nav a.active {
+    background: #2980b9;
+    color: white;
+  }
+  .sidebar nav a i {
+    margin-right: 12px;
+  }
+
+  /* Main content */
+  .main-content {
+    flex-grow: 1;
+    padding: 30px 40px;
+    overflow-y: auto;
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  header h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: #2c3e50;
+  }
+  header .profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  header .profile img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #2980b9;
+    object-fit: cover;
+  }
+  header .profile span {
+    font-weight: 600;
+    color: #2980b9;
+    font-size: 1.1rem;
+  }
+
+  /* Cards container */
+  .cards {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 35px;
+    flex-wrap: wrap;
+  }
+  .card {
+    background: white;
+    flex: 1;
+    min-width: 240px;
+    padding: 25px 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: box-shadow 0.3s ease;
+  }
+  .card:hover {
+    box-shadow: 0 12px 30px rgba(41, 128, 185, 0.3);
+  }
+  .card h3 {
+    margin-top: 0;
+    font-weight: 700;
+    color: #2980b9;
+    margin-bottom: 15px;
+  }
+  .card p {
+    font-size: 1rem;
+    color: #555;
+  }
+  .card .number {
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+
+  /* Notifications */
+  .notifications {
+    background: white;
+    border-radius: 15px;
+    padding: 25px 30px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    max-width: 700px;
+  }
+  .notifications h3 {
+    font-weight: 700;
+    color: #2980b9;
+    margin-top: 0;
+    margin-bottom: 20px;
+  }
+  .notification {
+    border-bottom: 1px solid #e1e4e8;
+    padding: 15px 0;
+  }
+  .notification:last-child {
+    border-bottom: none;
+  }
+  .notification strong {
+    color: #2c3e50;
+  }
+  .notification time {
+    font-size: 0.8rem;
+    color: #999;
+    float: right;
+  }
+
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #aaa;
+    font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    body {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+      flex-direction: row;
+      padding: 15px 10px;
+      overflow-x: auto;
+    }
+    .sidebar h2 {
+      display: none;
+    }
+    .sidebar nav {
+      display: flex;
+      gap: 15px;
+      width: 100%;
+    }
+    .sidebar nav a {
+      padding: 10px 15px;
+      white-space: nowrap;
+      margin: 0;
+    }
+    .main-content {
+      padding: 20px 20px 40px 20px;
+    }
+    .cards {
+      flex-direction: column;
+      gap: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <aside class="sidebar" role="navigation" aria-label="Menu amministratore">
+    <h2>Admin Graphimecc</h2>
+    <nav>
+      <a href="#" class="active" aria-current="page"><i>🏠</i>Dashboard</a>
+      <a href="#"><i>📊</i>Statistiche</a>
+      <a href="#"><i>🔔</i>Notifiche</a>
+      <a href="#"><i>⚙️</i>Impostazioni</a>
+      <a href="#" id="logout"><i>🚪</i>Logout</a>
+    </nav>
+  </aside>
+
+  <main class="main-content" role="main">
+    <header>
+      <h1>Benvenuto, Admin</h1>
+      <div class="profile" aria-label="Profilo amministratore">
+        <img src="https://i.pravatar.cc/100?img=12" alt="Foto profilo admin" />
+        <span>Admin</span>
+      </div>
+    </header>
+
+    <section class="cards" aria-label="Riepilogo statistiche">
+      <article class="card" tabindex="0">
+        <h3>Utenti Registrati</h3>
+        <p class="number">1.253</p>
+        <p>Numero totale di utenti attivi nel sistema.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <h3>Sessioni Attive</h3>
+        <p class="number">87</p>
+        <p>Utenti attualmente connessi.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <h3>Nuovi Messaggi</h3>
+        <p class="number">12</p>
+        <p>Messaggi in attesa di revisione.</p>
+      </article>
+      <article class="card" tabindex="0">
+        <h3>Ticket di Supporto</h3>
+        <p class="number">5</p>
+        <p>Richieste aperte dal team supporto.</p>
+      </article>
+    </section>
+
+    <section class="notifications" aria-label="Notifiche recenti">
+      <h3>Notifiche Recenti</h3>
+      <div class="notification" tabindex="0">
+        <time datetime="2025-06-25T10:15">10:15</time>
+        <strong>Nuovo accesso rilevato</strong> da IP 192.168.1.15
+      </div>
+      <div class="notification" tabindex="0">
+        <time datetime="2025-06-24T18:30">24/06/2025 18:30</time>
+        <strong>Backup completato</strong> con successo senza errori.
+      </div>
+      <div class="notification" tabindex="0">
+        <time datetime="2025-06-23T14:00">23/06/2025 14:00</time>
+        <strong>Aggiornamento sistema</strong> pianificato per il 28/06.
+      </div>
+    </section>
+
+    <footer>
+      © 2025 Graphimecc S.R.L. - Area amministratore protetta
+    </footer>
+  </main>
+
+  <script>
+    document.getElementById('logout').addEventListener('click', e => {
+      e.preventDefault()
+      localStorage.clear()
+      alert('Logout effettuato con successo!')
+      window.location.href = 'login.html'
+    })
+  </script>
+
+</body>
+</html>

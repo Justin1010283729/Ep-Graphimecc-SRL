@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login - Graphimecc</title>
+  <link rel="icon" type="image/x-icon" href="icon/iconasitogp.ico" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      color: #333;
+      position: relative;
+    }
+    .logo-link {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      display: inline-block;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+    .logo-link:hover {
+      transform: scale(1.1);
+    }
+    .logo-link img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      border-radius: 50%;
+    }
+    .login-container {
+      background: white;
+      padding: 40px 30px 35px 30px;
+      border-radius: 15px;
+      box-shadow: 0 12px 30px rgba(37, 117, 252, 0.3);
+      width: 320px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease;
+    }
+    .login-container:hover {
+      box-shadow: 0 16px 40px rgba(37, 117, 252, 0.6);
+    }
+    .login-container h2 {
+      margin: 0 0 25px 0;
+      font-weight: 600;
+      color: #2575fc;
+      letter-spacing: 0.7px;
+      font-size: 1.9rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      text-align: left;
+    }
+    label {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 6px;
+      display: block;
+    }
+    input[type="text"],
+    input[type="password"] {
+      padding: 12px 15px;
+      font-size: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      outline-offset: 2px;
+    }
+    input[type="text"]:focus,
+    input[type="password"]:focus {
+      border-color: #2575fc;
+      box-shadow: 0 0 8px rgba(37, 117, 252, 0.5);
+    }
+    .error-message {
+      color: #d93025;
+      font-size: 0.85rem;
+      margin-top: -15px;
+      margin-bottom: 10px;
+      display: none;
+    }
+    button {
+      background: linear-gradient(135deg, #2575fc, #6a11cb);
+      border: none;
+      padding: 14px 0;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.4s ease;
+      letter-spacing: 1px;
+      user-select: none;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      box-shadow: 0 8px 20px rgba(106, 17, 203, 0.5);
+    }
+    .success-message {
+      background-color: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 20px;
+      font-weight: 600;
+      font-size: 1rem;
+      display: none;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(37, 117, 252, 0.2);
+    }
+  </style>
+</head>
+<body>
+
+  <a href="https://graphimecc.it/it/" class="logo-link" aria-label="Vai al sito Graphimecc">
+    <img src="icon/gpf.jpg" alt="Logo Graphimecc" />
+  </a>
+
+  <div class="login-container" role="main" aria-label="Login Form">
+    <h2>Login Graphimecc S.R.L.</h2>
+    <form id="loginForm" novalidate>
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" autocomplete="username" placeholder="Inserisci username" required />
+      <div id="username-error" class="error-message">Inserisci un username valido.</div>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Inserisci password" required />
+      <div id="password-error" class="error-message">Inserisci una password.</div>
+
+      <button type="submit" aria-label="Accedi">Accedi</button>
+    </form>
+    <div id="success-message" class="success-message" role="alert" aria-live="polite"></div>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm')
+    const usernameInput = document.getElementById('username')
+    const passwordInput = document.getElementById('password')
+    const usernameError = document.getElementById('username-error')
+    const passwordError = document.getElementById('password-error')
+    const successMessage = document.getElementById('success-message')
+
+    const users = {
+      utente: { password: "abcd", role: "user" },
+      "R.pedrollo": { password: "secret", role: "user" },
+      "J.Plaku": { password: "secret", role: "user" },
+      admin: { password: "1234", role: "admin" }
+    }
+
+    function validate() {
+      let valid = true
+      usernameError.style.display = 'none'
+      passwordError.style.display = 'none'
+      successMessage.style.display = 'none'
+
+      if (usernameInput.value.trim().length < 3) {
+        usernameError.style.display = 'block'
+        valid = false
+      }
+      if (passwordInput.value.trim() === '') {
+        passwordError.style.display = 'block'
+        valid = false
+      }
+      return valid
+    }
+
+    function login(event) {
+      event.preventDefault()
+      if (!validate()) return false
+
+      const username = usernameInput.value.trim()
+      const password = passwordInput.value.trim()
+
+      if (users[username] && users[username].password === password) {
+        localStorage.setItem("loggedIn", "true")
+        localStorage.setItem("role", users[username].role)
+        localStorage.setItem("username", username)
+
+        if (users[username].role === 'admin') {
+          const loginsCount = localStorage.getItem('adminLoginsCount')
+          if (loginsCount === null) {
+            localStorage.setItem('adminLoginsCount', '1')
+          } else {
+            localStorage.setItem('adminLoginsCount', (parseInt(loginsCount) + 1).toString())
+          }
+        }
+
+        successMessage.textContent = 'Login effettuato con successo! Benvenuto, ' + username + '.'
+        successMessage.style.display = 'block'
+        usernameInput.value = ''
+        passwordInput.value = ''
+        usernameInput.focus()
+
+        setTimeout(() => {
+          if (users[username].role === 'admin') {
+            window.location.href = 'admin.html'
+          } else {
+            window.location.href = 'user.html'
+          }
+        }, 1500)
+      } else {
+        alert('Credenziali errate, riprova.')
+      }
+    }
+
+    form.addEventListener('submit', login)
+  </script>
+
+</body>
+</html>
