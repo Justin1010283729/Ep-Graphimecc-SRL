@@ -124,7 +124,7 @@
 
   <script>
     function initMap() {
-      const location = { lat: 45.42432, lng: 11.07830 }
+      const location = { lat: 45.42432, lng: 11	.07830 }
 
       const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
