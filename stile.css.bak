@@ -80,7 +80,11 @@ p {
   font-style: italic;
 }
 
-
+#logo99 {
+		
+	text-align: left;
+	
+}
 
 
 
@@ -108,6 +112,10 @@ p {
   background-color: #04c98b ;
 }
 
+.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+}
 
 
 

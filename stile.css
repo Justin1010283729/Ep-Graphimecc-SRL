@@ -112,6 +112,10 @@ p {
   background-color: #04c98b ;
 }
 
+.dark-theme {
+  background-color: #121212;
+  color: #e0e0e0;
+}
 
 
 
@@ -122,7 +126,11 @@ p {
 	
 }
 
-
+#toggleLanguageBtn{
+	
+	align-items: center;
+	
+}
 
 body {
   background-color: #ffffff;

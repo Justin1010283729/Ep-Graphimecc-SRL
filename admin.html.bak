@@ -14,7 +14,6 @@
       height: 100vh;
     }
 
-    /* Menu laterale */
     nav {
       width: 220px;
       background-color: #004d40;
@@ -70,13 +69,15 @@
       font-weight: bold;
     }
 
-    /* Contenuto principale */
     main {
       flex-grow: 1;
       padding: 30px;
       overflow-y: auto;
       background: white;
       box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     header {
@@ -84,6 +85,8 @@
       align-items: center;
       margin-bottom: 30px;
       user-select: none;
+      width: 100%;
+      justify-content: center;
     }
 
     header h1 {
@@ -93,7 +96,6 @@
       font-weight: 700;
     }
 
-    /* Form crea utente */
     #admin-user-management {
       max-width: 400px;
       background: #e0f2f1;
@@ -101,6 +103,8 @@
       border-radius: 15px;
       box-shadow: 0 0 15px rgba(0,77,64,0.2);
       margin-bottom: 40px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     label {
@@ -154,9 +158,9 @@
       min-height: 22px;
     }
 
-    /* Lista utenti */
     #user-list-section {
       max-width: 400px;
+      width: 100%;
     }
 
     #user-list ul {
@@ -184,7 +188,6 @@
       border-bottom: none;
     }
 
-    /* Password con toggle occhio */
     .password-container {
       display: flex;
       align-items: center;
@@ -222,10 +225,8 @@
       color: #004d40;
     }
 
-    /* Logout */
     #logoutBtn {
-      margin: 40px auto;
-      display: block;
+      margin: 40px auto 0 auto;
       background-color: #c62828;
       border: none;
       color: white;
@@ -381,10 +382,25 @@
     })
 
     document.getElementById('logoutBtn').addEventListener('click', () => {
-      alert("Logout effettuato")
-      // Qui metti il redirect o altra logica logout
+      const currentUser = localStorage.getItem('username') || ''
+      if (currentUser) {
+        localStorage.setItem('lastLoggedOutUser', currentUser)
+      }
+      localStorage.removeItem('loggedIn')
+      localStorage.removeItem('role')
+      localStorage.removeItem('username')
+      window.location.href = 'login.html'
     })
 
+    // Controllo accesso admin
+    function checkAdminAccess() {
+      if (localStorage.getItem('loggedIn') !== 'true' || localStorage.getItem('role') !== 'admin') {
+        alert('Accesso negato. Devi effettuare il login come admin.')
+        window.location.href = 'login.html'
+      }
+    }
+
+    checkAdminAccess()
     displayUsers()
   </script>
 </body>

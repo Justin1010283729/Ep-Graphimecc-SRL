@@ -83,10 +83,10 @@
     header {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      width: 100%;
       margin-bottom: 30px;
       user-select: none;
-      width: 100%;
-      justify-content: center;
     }
 
     header h1 {
@@ -94,6 +94,22 @@
       font-size: 1.8rem;
       color: #004d40;
       font-weight: 700;
+    }
+
+    #languageSelector {
+      font-size: 1rem;
+      padding: 5px 8px;
+      border-radius: 8px;
+      border: 2px solid #004d40;
+      background: #e0f2f1;
+      cursor: pointer;
+      outline-offset: 2px;
+      transition: border-color 0.3s;
+    }
+
+    #languageSelector:focus {
+      border-color: #00796b;
+      background-color: #b2dfdb;
     }
 
     #admin-user-management {
@@ -262,6 +278,10 @@
   <main>
     <header>
       <h1>Area Riservata Admin</h1>
+      <select id="languageSelector" aria-label="Seleziona lingua">
+        <option value="it" selected>Italiano</option>
+        <option value="en">English</option>
+      </select>
     </header>
 
     <section id="admin-user-management">
@@ -293,6 +313,59 @@
   </main>
 
   <script>
+    const translations = {
+      it: {
+        title: "Area Riservata Admin",
+        createUser: "Crea nuovo utente",
+        username: "Username:",
+        password: "Password:",
+        role: "Ruolo:",
+        userRole: "Utente",
+        adminRole: "Admin",
+        createButton: "Crea utente",
+        userListTitle: "Lista utenti registrati",
+        logout: "Logout"
+      },
+      en: {
+        title: "Admin Reserved Area",
+        createUser: "Create new user",
+        username: "Username:",
+        password: "Password:",
+        role: "Role:",
+        userRole: "User",
+        adminRole: "Admin",
+        createButton: "Create user",
+        userListTitle: "Registered Users List",
+        logout: "Logout"
+      }
+    };
+
+    function applyLanguage(lang) {
+      document.querySelector('header h1').textContent = translations[lang].title;
+      document.querySelector('#admin-user-management h3').textContent = translations[lang].createUser;
+      document.querySelector('label[for="newUsername"]').textContent = translations[lang].username;
+      document.querySelector('label[for="newPassword"]').textContent = translations[lang].password;
+      document.querySelector('label[for="newRole"]').textContent = translations[lang].role;
+      document.querySelector('#newRole option[value="user"]').textContent = translations[lang].userRole;
+      document.querySelector('#newRole option[value="admin"]').textContent = translations[lang].adminRole;
+      document.querySelector('#createUserForm button[type="submit"]').textContent = translations[lang].createButton;
+      document.querySelector('#user-list-section h3').textContent = translations[lang].userListTitle;
+      document.querySelector('#logoutBtn').textContent = translations[lang].logout;
+    }
+
+    document.getElementById('languageSelector').addEventListener('change', e => {
+      const selectedLang = e.target.value;
+      localStorage.setItem('preferredLanguage', selectedLang);
+      applyLanguage(selectedLang);
+    });
+
+    // Carica lingua preferita o default italiano
+    const savedLang = localStorage.getItem('preferredLanguage') || 'it';
+    document.getElementById('languageSelector').value = savedLang;
+    applyLanguage(savedLang);
+
+    // Funzioni esistenti
+
     function loadUsers() {
       const storedUsers = localStorage.getItem('users')
       if (storedUsers) {
@@ -325,21 +398,22 @@
           <strong>${username}</strong> — Ruolo: ${user.role}
           <div class="password-container">
             <input type="password" readonly value="${user.password}" id="pwd-${username}" />
-            <span class="toggle-password" data-target="pwd-${username}" title="Mostra/Nascondi password">👁️</span>
+            <span class="toggle-password" data-target="pwd-${username}">&#128065;</span>
           </div>
         </li>`
       }
       html += '</ul>'
       userList.innerHTML = html
 
-      document.querySelectorAll('.toggle-password').forEach(btn => {
-        btn.onclick = () => {
-          const input = document.getElementById(btn.dataset.target)
-          if (!input) return
-          if (input.type === "password") {
-            input.type = "text"
+      // Attiva toggle password
+      document.querySelectorAll('.toggle-password').forEach(el => {
+        el.onclick = () => {
+          const targetId = el.getAttribute('data-target')
+          const inputPwd = document.getElementById(targetId)
+          if (inputPwd.type === "password") {
+            inputPwd.type = "text"
           } else {
-            input.type = "password"
+            inputPwd.type = "password"
           }
         }
       })
@@ -348,59 +422,43 @@
     document.getElementById('createUserForm').addEventListener('submit', e => {
       e.preventDefault()
       const username = document.getElementById('newUsername').value.trim()
-      const password = document.getElementById('newPassword').value
+      const password = document.getElementById('newPassword').value.trim()
       const role = document.getElementById('newRole').value
 
-      const msgEl = document.getElementById('createUserMessage')
-
       if (username.length < 3) {
-        msgEl.style.color = 'red'
-        msgEl.textContent = "Username deve contenere almeno 3 caratteri"
+        showMessage("Username troppo corto", true)
         return
       }
-      if (password.length < 1) {
-        msgEl.style.color = 'red'
-        msgEl.textContent = "Password non può essere vuota"
+      if (password.length === 0) {
+        showMessage("Password non può essere vuota", true)
         return
       }
 
       const users = loadUsers()
       if (users[username]) {
-        msgEl.style.color = 'red'
-        msgEl.textContent = "Utente già esistente"
+        showMessage("Utente già esistente", true)
         return
       }
 
       users[username] = { password, role }
       saveUsers(users)
       displayUsers()
-
-      msgEl.style.color = 'green'
-      msgEl.textContent = `Utente "${username}" creato con successo!`
-
+      showMessage("Utente creato con successo!", false)
       e.target.reset()
     })
 
+    function showMessage(msg, isError) {
+      const msgEl = document.getElementById('createUserMessage')
+      msgEl.textContent = msg
+      msgEl.style.color = isError ? 'red' : 'green'
+      setTimeout(() => { msgEl.textContent = '' }, 4000)
+    }
+
     document.getElementById('logoutBtn').addEventListener('click', () => {
-      const currentUser = localStorage.getItem('username') || ''
-      if (currentUser) {
-        localStorage.setItem('lastLoggedOutUser', currentUser)
-      }
-      localStorage.removeItem('loggedIn')
-      localStorage.removeItem('role')
-      localStorage.removeItem('username')
+      alert('Logout eseguito. Torna alla pagina di login.')
       window.location.href = 'login.html'
     })
 
-    // Controllo accesso admin
-    function checkAdminAccess() {
-      if (localStorage.getItem('loggedIn') !== 'true' || localStorage.getItem('role') !== 'admin') {
-        alert('Accesso negato. Devi effettuare il login come admin.')
-        window.location.href = 'login.html'
-      }
-    }
-
-    checkAdminAccess()
     displayUsers()
   </script>
 </body>

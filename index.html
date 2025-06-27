@@ -66,6 +66,44 @@
       margin-left: auto;
       margin-right: auto;
     }
+
+    /* Stile pulsanti lingua e tema */
+    #toggleLanguageBtn, #themeToggleBtn {
+      position: fixed;
+      top: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: none;
+      background-color: #004d40;
+      color: white;
+      cursor: pointer;
+      user-select: none;
+      font-weight: bold;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+    #toggleLanguageBtn:hover, #themeToggleBtn:hover {
+      background-color: #afb806;
+    }
+    #toggleLanguageBtn {
+      right: 110px; /* distanza dal lato destro, lascia spazio al tema */
+    }
+    #themeToggleBtn {
+      right: 10px;
+    }
+
+    /* Tema scuro - esempio base */
+    body.dark-theme {
+      background-color: #121212;
+      color: #e0e0e0;
+    }
+    body.dark-theme a {
+      color: #80cbc4;
+    }
+    body.dark-theme #logoutBtn {
+      background-color: #9c7708;
+    }
   </style>
 </head>
 <body>
@@ -87,44 +125,117 @@
       </div>
     </div>
 
+    <!-- Pulsante cambio lingua -->
+    <button id="toggleLanguageBtn">EN</button>
+
+    <!-- Pulsante tema -->
+    <button id="themeToggleBtn">Tema Scuro</button>
+
     <h1 style="text-align: center;">Graphimecc S.R.L.</h1>
   </header>
 
   <main>
-    <p id="p2">Questa pagina è dedicata alla mia esperienza nell'ambito lavorativo extrascolastico.</p>
+    <p id="p2" data-i18n="experienceDescription">Questa pagina è dedicata alla mia esperienza nell'ambito lavorativo extrascolastico.</p>
     <br /><br /><br /><br />
-    <p>
+    <p data-i18n="experienceText">
       Durante il mio tirocinio presso Graphimecc S.R.L. ho avuto l'opportunità di immergermi in un ambiente lavorativo dinamico, dove teoria e pratica si intrecciano costantemente. Ho potuto lavorare direttamente con i macchinari per la produzione di stampi per etichette, imparando a conoscere i processi industriali e le tecniche di precisione necessarie per ottenere prodotti di alta qualità. Parallelamente, ho approfondito le mie competenze di programmazione, specialmente in C#, affiancando lo sviluppo di software per il controllo e la gestione dei macchinari. Questa esperienza mi ha permesso di capire come applicare concetti teorici di informatica e automazione in contesti reali, bilanciando l’uso di vari linguaggi di programmazione e affrontando problemi pratici quotidiani. In sintesi, il tirocinio è stato un perfetto mix tra apprendimento tecnico e applicazione pratica, fondamentale per la mia crescita professionale.
     </p>
 
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /> 
 
     <section class="statistiche">
-      <h2>Statistiche</h2>
+      <h2 data-i18n="statsTitle">Statistiche</h2>
       <div class="stat-box">
         <div class="numero">160</div>
-        <div class="etichetta">Ore totali</div>
+        <div class="etichetta" data-i18n="statsHours">Ore totali</div>
       </div>
       <div class="stat-box">
         <div class="numero">18 Giugno - 16 Luglio</div>
-        <div class="etichetta">Periodo</div>
+        <div class="etichetta" data-i18n="statsPeriod">Periodo</div>
       </div>
       <div class="stat-box">
         <div class="numero">8:00 - 17:00</div>
-        <div class="etichetta">Orario di lavoro</div>
+        <div class="etichetta" data-i18n="statsWorkTime">Orario di lavoro</div>
       </div>
     </section>
 
     <section id="mappa-graphimecc">
-      <h2>Dove trovarci</h2>
-      <p>Graphimecc S.R.L. - Via esempio 123, Verona</p>
+      <h2 data-i18n="mapTitle">Dove trovarci</h2>
+      <p data-i18n="mapAddress">Graphimecc S.R.L. - Via esempio 123, Verona</p>
       <div id="map"></div>
     </section>
   </main>
 
   <script>
+    const translations = {
+      it: {
+        experienceDescription: "Questa pagina è dedicata alla mia esperienza nell'ambito lavorativo extrascolastico.",
+        experienceText: "Durante il mio tirocinio presso Graphimecc S.R.L. ho avuto l'opportunità di immergermi in un ambiente lavorativo dinamico, dove teoria e pratica si intrecciano costantemente. Ho potuto lavorare direttamente con i macchinari per la produzione di stampi per etichette, imparando a conoscere i processi industriali e le tecniche di precisione necessarie per ottenere prodotti di alta qualità. Parallelamente, ho approfondito le mie competenze di programmazione, specialmente in C#, affiancando lo sviluppo di software per il controllo e la gestione dei macchinari. Questa esperienza mi ha permesso di capire come applicare concetti teorici di informatica e automazione in contesti reali, bilanciando l’uso di vari linguaggi di programmazione e affrontando problemi pratici quotidiani. In sintesi, il tirocinio è stato un perfetto mix tra apprendimento tecnico e applicazione pratica, fondamentale per la mia crescita professionale.",
+        statsTitle: "Statistiche",
+        statsHours: "Ore totali",
+        statsPeriod: "Periodo",
+        statsWorkTime: "Orario di lavoro",
+        mapTitle: "Dove trovarci",
+        mapAddress: "Graphimecc S.R.L. - Via Alfred Nobel 2, Verona, Italia"
+      },
+      en: {
+        experienceDescription: "This page is dedicated to my extracurricular work experience.",
+        experienceText: "During my internship at Graphimecc S.R.L., I had the opportunity to immerse myself in a dynamic work environment, where theory and practice constantly intertwine. I worked directly with machinery for producing molds for labels, learning about industrial processes and precision techniques needed to achieve high-quality products. At the same time, I improved my programming skills, especially in C#, assisting in developing software for controlling and managing machinery. This experience helped me understand how to apply theoretical concepts of computer science and automation in real contexts, balancing the use of various programming languages and facing practical daily problems. In short, the internship was a perfect mix of technical learning and practical application, fundamental for my professional growth.",
+        statsTitle: "Statistics",
+        statsHours: "Total hours",
+        statsPeriod: "Period",
+        statsWorkTime: "Working hours",
+        mapTitle: "Where to find us",
+        mapAddress: "Graphimecc S.R.L. - Via Alfred Nobel 2, Verona, Italy"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem('language', lang);
+      document.getElementById('toggleLanguageBtn').textContent = lang === 'it' ? 'EN' : 'IT';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+    }
+
+    document.getElementById('toggleLanguageBtn').addEventListener('click', () => {
+      const currentLang = localStorage.getItem('language') || 'it';
+      setLanguage(currentLang === 'it' ? 'en' : 'it');
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('language') || 'it';
+      setLanguage(savedLang);
+    });
+  </script>
+
+  <script>
+    const btn = document.getElementById('themeToggleBtn')
+    btn.onclick = () => {
+      document.body.classList.toggle('dark-theme')
+      if (document.body.classList.contains('dark-theme')) {
+        btn.textContent = 'Tema Chiaro'
+        localStorage.setItem('theme', 'dark')
+      } else {
+        btn.textContent = 'Tema Scuro'
+        localStorage.setItem('theme', 'light')
+      }
+    }
+
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-theme')
+      btn.textContent = 'Tema Chiaro'
+    }
+  </script>
+
+  <script>
     function initMap() {
-      const location = { lat: 45.42432, lng: 11	.07830 }
+      const location = { lat: 45.42432, lng: 11.07830 }
 
       const map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
