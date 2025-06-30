@@ -1,4 +1,5 @@
-# 🚀 Ep-Graphimecc S.R.L.
+# <img src="icon/custom-emoji.png" alt="custom emoji" width="20" height="20" style="vertical-align:middle" />
+# Ep-Graphimecc S.R.L.
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Justin1010283729/Ep-Graphimecc-SRL)
 ![GitHub issues](https://img.shields.io/github/issues/Justin1010283729/Ep-Graphimecc-SRL)
