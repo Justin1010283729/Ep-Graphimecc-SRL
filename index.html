@@ -108,6 +108,7 @@
 </head>
 <body>
   <div class="menu-verticale" id="menu">
+  <div id="daysRemaining">Giorni rimanenti: <span id="countdown">...</span></div>
     <a href="index.html">Home</a>
     <a href="Argomenti trattati.html">Argomenti trattati</a>
     <a href="Programmazione.html">Programmazione</a>
@@ -131,7 +132,7 @@
     <!-- Pulsante tema -->
     <button id="themeToggleBtn">Tema Scuro</button>
 
-    <h1 style="text-align: center;">Graphimecc S.R.L.</h1>
+    <h1 id="titolo" style="text-align: center;">Graphimecc S.R.L.</h1>
   </header>
 
   <main>
@@ -268,5 +269,30 @@
     async
     defer
   ></script>
+  
+  <script>
+	function aggiornaGiorniRimanenti() {
+		const oggi = new Date();
+		const target = new Date(2025, 6, 16); // luglio = mese 6 perché gennaio = 0
+		const diffTime = target - oggi;
+		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+		const countdownElem = document.getElementById('countdown');
+		if (diffDays > 0) {
+		countdownElem.textContent = diffDays;
+		} else {
+		countdownElem.textContent = '0';
+		}
+	}
+
+  aggiornaGiorniRimanenti();
+  </script>
+
+  
+  
+  
+  
+  
+  
+  
 </body>
 </html>
