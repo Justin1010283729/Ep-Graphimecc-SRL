@@ -4,6 +4,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/Justin1010283729/Ep-Graphimecc-SRL)
 ![GitHub license](https://img.shields.io/github/license/Justin1010283729/Ep-Graphimecc-SRL)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Justin1010283729/Ep-Graphimecc-SRL)
+<img src="icon/gpf.jpg" alt="custom emoji" width="20" height="20" style="vertical-align:middle" />
 
 
 ---
