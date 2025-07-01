@@ -115,6 +115,18 @@
     <a href="contatti.html">Contatti</a>
   </div>
 
+	
+	<div class="search-container">
+  <input type="text" id="searchInput" placeholder="🔍 Cerca nel sito..." oninput="cercaNelSito()" />
+	</div>
+
+
+	
+	
+	
+	
+	
+	
   <header>
     <div class="header-content">
       <a href="https://graphimecc.it/it/">
@@ -287,7 +299,23 @@
   aggiornaGiorniRimanenti();
   </script>
 
-  
+		  <script>
+				function cercaNelSito() {
+				  let input = document.getElementById('searchInput').value.toLowerCase();
+				  let blocchi = document.querySelectorAll('p, h1, h2, h3, li, .box, .card'); // Aggiungi qui i tipi di elementi che vuoi cercare
+
+				  blocchi.forEach(function(blocco) {
+					let testo = blocco.textContent.toLowerCase();
+					if (testo.includes(input)) {
+					  blocco.style.display = '';
+					} else {
+					  blocco.style.display = 'none';
+					}
+				  });
+			}
+			</script>
+
+
   
   
   
