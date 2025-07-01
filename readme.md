@@ -188,7 +188,7 @@ Questo progetto è rilasciato sotto la licenza MIT. Sentiti libero di usarlo e m
 
 ---
 
-Grazie per aver visitato il mio progetto! 🙏✨  
+Grazie per aver visitato il mio progetto!   
 ---
 
 *Justin Plaku*  
