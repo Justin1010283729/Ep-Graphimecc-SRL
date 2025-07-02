@@ -19,7 +19,7 @@ Puoi clonare il progetto dal repository GitHub usando Git oppure scaricare diret
 
 #### 🔽 Clonazione con Git:
 ```bash
-git clone https://github.com/Justin1010283729/Ep-Graphimecc-S.R.L..git
+git clone https://github.com/Justin1010283729/Ep-Graphimecc-SRL.git
 ```
 
 #### 📦 Download ZIP:
