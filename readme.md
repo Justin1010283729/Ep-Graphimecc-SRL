@@ -1,4 +1,4 @@
-# 🚀 Ep-Graphimecc S.R.L.
+# 🚀 Ep-Graphimecc SRL
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/Justin1010283729/Ep-Graphimecc-SRL)
 ![GitHub issues](https://img.shields.io/github/issues/Justin1010283729/Ep-Graphimecc-SRL)
